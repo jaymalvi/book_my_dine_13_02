@@ -1,5 +1,22 @@
 <script>
   // core components
+  const baseUrl = "http://localhost:4000/dashboard";
+  import { onMount } from 'svelte';
+
+  let data = {
+    restaurant:0,
+    deliveryperson:0
+  };
+  onMount(async () => {
+        const res = await fetch(`${baseUrl}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          },
+        });
+        data = await res.json(); 
+    });
+
   import CardStats from "components/Cards/CardStats.svelte";
 </script>
 
@@ -11,20 +28,17 @@
       <div class="flex flex-wrap">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardStats
-            statSubtitle="PENDING"
-            statTitle="350,897"
-            statArrow="up"
-            statPercent="3.48"
-            statPercentColor="text-emerald-500"
-            statDescripiron="Since last month"
+            statSubtitle="RESTAURANT"
+            statTitle={data.restaurant}
+            
             statIconName="far fa-chart-bar"
             statIconColor="bg-red-500"
           />
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardStats
-            statSubtitle="CONFIRMED"
-            statTitle="2,356"
+            statSubtitle="DELIVERY PERSON"
+            statTitle={data.deliveryperson}
             statArrow="down"
             statPercent="3.48"
             statPercentColor="text-red-500"

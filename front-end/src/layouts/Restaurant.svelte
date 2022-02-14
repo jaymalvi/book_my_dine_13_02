@@ -10,8 +10,11 @@
     // pages for this layout
     import ManageRestaurant from "views/restaurant/ManageRestaurant.svelte";
     import AddRestaurant from "views/restaurant/AddRestaurant.svelte";
+    import RestaurantApprovel from "views/restaurant/RestaurantApprovel.svelte";
     import ManageDeliveryman from "views/deliveryman/ManageDeliveryman.svelte";
     import AddDeliveryman from "views/deliveryman/AddDeliveryman.svelte";
+    import DeliveryPersonApprovel from "views/deliveryman/DeliveryPersonApprovel.svelte";
+
     // import AddRestaurant from "views/restaurant/ManageRestaurant/AddRestaurant.svelte";
    
 
@@ -28,6 +31,7 @@
         <Router url="restaurant">
           <Route path="managerestaurant" component="{ManageRestaurant}" />
           <Route path="addrestaurant" component="{AddRestaurant}" />
+          <Route path="restaurantapprovel" component="{RestaurantApprovel}" />
           <Route path="addrestaurant/:id" component="{AddRestaurant}" />
           <!-- <Route path="managedeliveryman" component="{ManageDeliveryman}" />
           <Route path="addeliveryman" component="{AddDeliveryman}" /> -->
@@ -39,6 +43,7 @@
           <Route path="addrestaurant" component="{AddRestaurant}" /> -->
           <Route path="managedeliveryman" component="{ManageDeliveryman}" />
           <Route path="adddeliveryman" component="{AddDeliveryman}" />
+          <Route path="deliverypersonapprovel" component="{DeliveryPersonApprovel}" />
           <Route path="adddeliveryman/:id" component="{AddDeliveryman}" />
  
   

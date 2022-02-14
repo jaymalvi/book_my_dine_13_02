@@ -345,17 +345,15 @@
                 <div class="flex flex-wrap">
                   <div class="w-full lg:w-12/12 px-4" style="margin-block: 2%;">
                     <div class="relative w-full mb-3">
-                      <!-- <button type="submit" on:click|preventDefault={addRestaurant} class="btn btn-primary">
-                    </button> -->
-                      {#if objectId != "/deliveryman/adddeliveryman" }
                       <button type="submit" on:click|preventDefault={addDeliveryPerson} class="btn btn-primary">
-                        add Note
-                      </button>  
-                      {:else}
-                      <button type="submit" on:click|preventDefault={updateDeliveryPerson(data._id)} class="btn btn-primary">
-                        Update Note
-                      </button>
-                      {/if}
+                    </button>
+                    {#if objectId != "adddeliveryman" }
+                    <button type="submit" on:click|preventDefault={updateDeliveryPerson} class="btn btn-primary">
+                      Update Note
+                    </button>  
+                    {:else}
+                    <input type="submit" value="Add Note" class="btn btn-primary" />
+                    {/if}
                       <!-- <a 
                        use:link
                        href="/deliveryman/managedeliveryman" 

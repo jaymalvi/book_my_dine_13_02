@@ -1,3 +1,5 @@
+
+
 <script>
     // core components
     // import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
@@ -64,18 +66,12 @@
           <h3
             class="font-semibold text-lg {color === 'light' ? 'text-blueGray-700' : 'text-white'}"
           >
-            Manage Restaurant
+         Restaurant Approvel
           </h3>
          <div>
           <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"><div class="relative flex  flex-wrap items-stretch"><span class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i class="fas fa-search"></i></span> 
             <input type="text" placeholder="Search here..." class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"></div></form>
-         
-          <a 
-          use:link
-          href="/restaurant/addrestaurant" 
-          class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" style="margin-left: 82%;">          
-          <i class="fa fa-plus" aria-hidden="true"></i> Add Restaurant
-          </a>
+        
         </div>
         </div>
       </div>
@@ -105,10 +101,6 @@
               Owner Name 
             </th>
 
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}">
-             Status
-            </th>
-
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"> 
             Action
             </th>
@@ -126,7 +118,7 @@
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
               >
               <img
-                  src=""
+                  src="http://localhost:4000/sign.png"
                   alt="..."
                   class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"
                 />
@@ -176,20 +168,16 @@
               >
               {i.firstname} {i.lastname}
               </td>
-              <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
-              >
-                
-              </td>
+              
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
               >
               <a 
-                use:link
-                href="/restaurant/addrestaurant/{i._id}" 
-                class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
-                 Edit
-                </a>
+                  use:link
+                  href="/deliveryman/adddeliveryman/{i._id}" 
+                  class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
+                   Confirm
+                  </a>
               <button class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"          
                on:click={() => deleteNote(i._id) }>Delete</button>
                 <!-- <button>Edit</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-danger" on:click|preventDefault={deleteNote(i._id)}>Delete</button> -->

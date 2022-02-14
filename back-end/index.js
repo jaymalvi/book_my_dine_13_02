@@ -1,7 +1,9 @@
 const express = require("express");
+const app = express();
 const PORT = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const cors = require("cors");
+// const fs = require("fs");
 const mongoose = require("mongoose");
 const config = require("./config/db");
 const multer  = require('multer')
@@ -16,9 +18,7 @@ var storage = multer.diskStorage({
 })
 
 const upload = multer({ storage });
-const app = express();
 
-app.use(express.static(__dirname + 'public'));
 // app.use('/static', express.static(path.join(__dirname, 'public')))
 // app.use(bodyParser.urlencoded({extended: true}))
 const blogController = require("./api/controllers/blogcontrollers");
@@ -46,6 +46,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //configure body-parser ends here
 // define first route
+
+// app.get("/image/:file", (req, res) => {
+// 	fs.createReadStream(path.join(__dirname, "public", req.params.file)).pipe(
+// 		res
+// 	);
+// });
+
 app.get("/", (req, res) => {
   res.json("Hola Svelte Developers...Shall we fight??");
 });
@@ -60,6 +67,8 @@ app.get("/restaurant/:id", restaurantController.getRestaurant);
 app.post("/restaurant", upload.single('file'), restaurantController.addRestaurant);
 app.delete("/restaurant/:id", restaurantController.deleteRestaurant);
 app.put("/restaurant/:id", restaurantController.updateRestaurant);
+app.get("/dashboard", restaurantController.dashboard);
+
 
 
 app.get("/deliveryPerson", deliveryPersonController.allDeliveryPerson);

@@ -1,9 +1,24 @@
 const Restaurant = require("../models/Restaurant");
+const DeliveryPerson = require("../models/DeliveryPerson");
+
 
 exports.allRestaurant = async (req, res) => {
   try {
     const result = await Restaurant.find();
     res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.dashboard = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(req.params);
+    const restaurant = await Restaurant.count();
+    const deliveryperson = await DeliveryPerson.count();
+
+    res.status(200).json({restaurant,deliveryperson});
   } catch (err) {
     res.status(500).json(err);
   }

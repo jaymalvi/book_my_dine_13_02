@@ -211,6 +211,41 @@ export let location;
         <h6
             class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
             >
+            Approvels
+        </h6>
+        <!-- Navigation -->
+
+        <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/restaurant/restaurantapprovel"
+                    >
+                    <i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
+                    Restaurant
+                </a>
+            </li>
+
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/deliveryman/deliverypersonapprovel"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Delivery Person
+                </a>
+            </li>
+        </ul>
+
+        <!-- Divider -->
+        <hr class="my-4 md:min-w-full" />
+
+        <!-- Heading -->
+        <h6
+            class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+            >
             Auth Layout Pages
         </h6>
         <!-- Navigation -->
