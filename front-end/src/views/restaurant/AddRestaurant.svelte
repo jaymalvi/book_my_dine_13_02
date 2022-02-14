@@ -86,23 +86,23 @@
   //create functionality
   async function submitForm(event) {
     event.preventDefault();
-    if (files.length > 0) {
-      const formData = new FormData();
-      delete data._id;
-      formData.append("data", JSON.stringify(data));
+    const formData = new FormData();
+    delete data._id;
+    if (files && files.length > 0) {
       formData.append("file", files[0]);
-      // formData.push({...data});
       console.log(">>>>>>>", formData, files[0])
-      const response = await fetch(`${baseUrl}`, {
-        method: "POST",
-        // headers: [["Content-Type", "multipart/form-data"]],
-        body: formData,
-        // headers: {"Content-Type": "multipart/form-data"},
-      });
-      const restaurant = response.json();
-      // dispatch("postCreated", restaurant);
-      return await restaurant;
     }
+    formData.append("data", JSON.stringify(data));
+    // formData.push({...data});
+    const response = await fetch(`${baseUrl}`, {
+      method: "POST",
+      // headers: [["Content-Type", "multipart/form-data"]],
+      body: formData,
+      // headers: {"Content-Type": "multipart/form-data"},
+    });
+    const restaurant = response.json();
+    // dispatch("postCreated", restaurant);
+    return await restaurant;
   }
   let addRestaurant = async () => {
     data.file = files;

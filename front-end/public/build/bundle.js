@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -3965,21 +3965,21 @@ var app = (function () {
     			li0 = element("li");
     			a0 = element("a");
     			i0 = element("i");
-    			t5 = text("\n                    Dashboard");
+    			t5 = text("\r\n                    Dashboard");
     			t6 = space();
     			hr1 = element("hr");
     			t7 = space();
     			h60 = element("h6");
     			a1 = element("a");
     			i1 = element("i");
-    			t8 = text("\n                Restaurant");
+    			t8 = text("\r\n                Restaurant");
     			t9 = space();
     			hr2 = element("hr");
     			t10 = space();
     			h61 = element("h6");
     			a2 = element("a");
     			i2 = element("i");
-    			t11 = text("\n              Delivery Men");
+    			t11 = text("\r\n              Delivery Men");
     			t12 = space();
     			hr3 = element("hr");
     			t13 = space();
@@ -3990,7 +3990,7 @@ var app = (function () {
     			h62 = element("h6");
     			a3 = element("a");
     			i3 = element("i");
-    			t16 = text("\n                Customer");
+    			t16 = text("\r\n                Customer");
     			t17 = space();
     			hr5 = element("hr");
     			t18 = space();
@@ -26784,7 +26784,7 @@ var app = (function () {
     			div13 = element("div");
     			div12 = element("div");
     			p = element("p");
-    			p.textContent = "An artist of considerable range, Jenna the name taken by\n            Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and\n            records all of his own music, giving it a warm, intimate feel with a\n            solid groove structure. An artist of considerable range.";
+    			p.textContent = "An artist of considerable range, Jenna the name taken by\r\n            Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and\r\n            records all of his own music, giving it a warm, intimate feel with a\r\n            solid groove structure. An artist of considerable range.";
     			t22 = space();
     			a = element("a");
     			a.textContent = "Show more";
@@ -29101,27 +29101,27 @@ var app = (function () {
     	//create functionality
     	async function submitForm(event) {
     		event.preventDefault();
+    		const formData = new FormData();
+    		delete data._id;
 
-    		if (files.length > 0) {
-    			const formData = new FormData();
-    			delete data._id;
-    			formData.append("data", JSON.stringify(data));
+    		if (files && files.length > 0) {
     			formData.append("file", files[0]);
-
-    			// formData.push({...data});
     			console.log(">>>>>>>", formData, files[0]);
-
-    			const response = await fetch(`${baseUrl$3}`, {
-    				method: "POST",
-    				// headers: [["Content-Type", "multipart/form-data"]],
-    				body: formData
-    			}); // headers: {"Content-Type": "multipart/form-data"},
-
-    			const restaurant = response.json();
-
-    			// dispatch("postCreated", restaurant);
-    			return await restaurant;
     		}
+
+    		formData.append("data", JSON.stringify(data));
+
+    		// formData.push({...data});
+    		const response = await fetch(`${baseUrl$3}`, {
+    			method: "POST",
+    			// headers: [["Content-Type", "multipart/form-data"]],
+    			body: formData
+    		}); // headers: {"Content-Type": "multipart/form-data"},
+
+    		const restaurant = response.json();
+
+    		// dispatch("postCreated", restaurant);
+    		return await restaurant;
     	}
 
     	let addRestaurant = async () => {
@@ -35464,11 +35464,11 @@ var app = (function () {
     			div1 = element("div");
     			button0 = element("button");
     			img0 = element("img");
-    			t2 = text("\n              Github");
+    			t2 = text("\r\n              Github");
     			t3 = space();
     			button1 = element("button");
     			img1 = element("img");
-    			t4 = text("\n              Google");
+    			t4 = text("\r\n              Google");
     			t5 = space();
     			hr = element("hr");
     			t6 = space();
@@ -35650,11 +35650,11 @@ var app = (function () {
     			div1 = element("div");
     			button0 = element("button");
     			img0 = element("img");
-    			t2 = text("\n              Github");
+    			t2 = text("\r\n              Github");
     			t3 = space();
     			button1 = element("button");
     			img1 = element("img");
-    			t4 = text("\n              Google");
+    			t4 = text("\r\n              Google");
     			t5 = space();
     			hr = element("hr");
     			t6 = space();
@@ -35692,7 +35692,7 @@ var app = (function () {
     			input4 = element("input");
     			t21 = space();
     			span = element("span");
-    			t22 = text("I agree with the\n                  ");
+    			t22 = text("I agree with the\r\n                  ");
     			a = element("a");
     			a.textContent = "Privacy Policy";
     			t24 = space();
@@ -36303,10 +36303,10 @@ var app = (function () {
     			div1 = element("div");
     			t2 = text("Copyright © ");
     			t3 = text(/*date*/ ctx[0]);
-    			t4 = text(" By\n          ");
+    			t4 = text(" By\r\n          ");
     			a = element("a");
     			a.textContent = "Book My Dine";
-    			t6 = text("\n          .");
+    			t6 = text("\r\n          .");
     			attr(div0, "class", "bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20");
     			set_style(div0, "transform", "translateZ(0)");
     			attr(hr, "class", "my-6 border-blueGray-300");
@@ -37027,10 +37027,10 @@ var app = (function () {
     			h30.textContent = "Working with us is a pleasure";
     			t24 = space();
     			p4 = element("p");
-    			p4.textContent = "Don't let your uses guess by attaching tooltips and popoves to any\n              element. Just make sure you enable them first via JavaScript.";
+    			p4.textContent = "Don't let your uses guess by attaching tooltips and popoves to any\r\n              element. Just make sure you enable them first via JavaScript.";
     			t26 = space();
     			p5 = element("p");
-    			p5.textContent = "The kit comes with three pre-built pages to help you get started\n              faster. You can change the text and images and you're good to go.\n              Just make sure you enable them first via JavaScript.";
+    			p5.textContent = "The kit comes with three pre-built pages to help you get started\r\n              faster. You can change the text and images and you're good to go.\r\n              Just make sure you enable them first via JavaScript.";
     			t28 = space();
     			a = element("a");
     			a.textContent = "Check Notus Svelte!";
@@ -37401,7 +37401,7 @@ var app = (function () {
     			div17 = element("div");
     			div16 = element("div");
     			p = element("p");
-    			p.textContent = "An artist of considerable range, Jenna the name taken by\n                    Melbourne-raised, Brooklyn-based Nick Murphy writes,\n                    performs and records all of his own music, giving it a warm,\n                    intimate feel with a solid groove structure. An artist of\n                    considerable range.";
+    			p.textContent = "An artist of considerable range, Jenna the name taken by\r\n                    Melbourne-raised, Brooklyn-based Nick Murphy writes,\r\n                    performs and records all of his own music, giving it a warm,\r\n                    intimate feel with a solid groove structure. An artist of\r\n                    considerable range.";
     			t27 = space();
     			a = element("a");
     			a.textContent = "Show more";
