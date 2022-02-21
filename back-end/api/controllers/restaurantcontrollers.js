@@ -4,7 +4,9 @@ const DeliveryPerson = require("../models/DeliveryPerson");
 
 exports.allRestaurant = async (req, res) => {
   try {
-    const result = await Restaurant.find();
+    // const isapproved = Boolean(req.params.isapproved);
+    // console.log(req.body, req.params, isapproved);
+    const result = await Restaurant.find({isapproved: req.params.isapproved});
     res.status(200).json(result);
   } catch (err) {
     res.status(500).json(err);

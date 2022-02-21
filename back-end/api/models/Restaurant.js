@@ -68,6 +68,10 @@ let restaurantSchema = mongoose.Schema({
     type: String,
     required: false
   },
+  isapproved: {
+    type: Boolean,
+    required: false
+  },
   created: {
     type: Date,
     default: Date.now()

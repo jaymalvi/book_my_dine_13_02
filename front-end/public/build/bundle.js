@@ -28270,7 +28270,7 @@ var app = (function () {
     	};
     }
 
-    // (591:22) {#if objectId != "addrestaurant" }
+    // (592:22) {#if objectId != "addrestaurant" }
     function create_if_block$3(ctx) {
     	let button;
     	let mounted;
@@ -29191,6 +29191,7 @@ var app = (function () {
     		event.preventDefault();
     		const formData = new FormData();
     		delete data._id;
+    		$$invalidate(2, data.isapproved = false, data);
 
     		if (files && files.length > 0) {
     			formData.append("file", files[0]);
@@ -38200,7 +38201,7 @@ var app = (function () {
     const nonVeg$1 = "../assets/img/nonveg.jpg";
 
     async function fetchData$3() {
-    	const res = await fetch(`${baseUrl$4}`, {
+    	const res = await fetch(`${baseUrl$4}/true`, {
     		method: "GET",
     		headers: { "Content-Type": "application/json" }
     	});
@@ -38248,14 +38249,14 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[5] = list[i];
     	return child_ctx;
     }
 
-    // (187:10) {:catch error}
+    // (197:10) {:catch error}
     function create_catch_block$2(ctx) {
     	let p;
-    	let t_value = /*error*/ ctx[6].message + "";
+    	let t_value = /*error*/ ctx[8].message + "";
     	let t;
 
     	return {
@@ -38275,10 +38276,10 @@ var app = (function () {
     	};
     }
 
-    // (114:10) {:then restaurants}
+    // (128:10) {:then restaurants}
     function create_then_block$2(ctx) {
     	let each_1_anchor;
-    	let each_value = /*restaurants*/ ctx[2];
+    	let each_value = /*restaurants*/ ctx[4];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
@@ -38301,8 +38302,8 @@ var app = (function () {
     			insert(target, each_1_anchor, anchor);
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*deleteNote, fetchData, veg, nonVeg*/ 0) {
-    				each_value = /*restaurants*/ ctx[2];
+    			if (dirty & /*deleteNote, fetchData, updateRestaurant, veg, nonVeg*/ 2) {
+    				each_value = /*restaurants*/ ctx[4];
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
@@ -38331,7 +38332,7 @@ var app = (function () {
     	};
     }
 
-    // (143:14) {:else}
+    // (157:14) {:else}
     function create_else_block$1(ctx) {
     	let img0;
     	let img0_src_value;
@@ -38365,7 +38366,7 @@ var app = (function () {
     	};
     }
 
-    // (137:41) 
+    // (151:41) 
     function create_if_block_1(ctx) {
     	let img;
     	let img_src_value;
@@ -38387,7 +38388,7 @@ var app = (function () {
     	};
     }
 
-    // (131:14) {#if i.food_type == 1}
+    // (145:14) {#if i.food_type == 1}
     function create_if_block$1(ctx) {
     	let img;
     	let img_src_value;
@@ -38409,43 +38410,42 @@ var app = (function () {
     	};
     }
 
-    // (115:12) {#each restaurants as i}
+    // (129:12) {#each restaurants as i}
     function create_each_block$2(ctx) {
     	let tr;
     	let td0;
     	let t0;
     	let td1;
-    	let t1_value = /*i*/ ctx[3].name + "";
+    	let t1_value = /*i*/ ctx[5].name + "";
     	let t1;
     	let t2;
     	let t3;
     	let td2;
-    	let t4_value = /*i*/ ctx[3].email + "";
+    	let t4_value = /*i*/ ctx[5].email + "";
     	let t4;
     	let t5;
     	let td3;
-    	let t6_value = /*i*/ ctx[3].phone + "";
+    	let t6_value = /*i*/ ctx[5].phone + "";
     	let t6;
     	let t7;
     	let td4;
-    	let t8_value = /*i*/ ctx[3].firstname + "";
+    	let t8_value = /*i*/ ctx[5].firstname + "";
     	let t8;
     	let t9;
-    	let t10_value = /*i*/ ctx[3].lastname + "";
+    	let t10_value = /*i*/ ctx[5].lastname + "";
     	let t10;
     	let t11;
     	let td5;
-    	let a;
-    	let t12;
+    	let button0;
     	let t13;
-    	let button;
+    	let button1;
     	let t15;
     	let mounted;
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*i*/ ctx[3].food_type == 1) return create_if_block$1;
-    		if (/*i*/ ctx[3].food_type == 2) return create_if_block_1;
+    		if (/*i*/ ctx[5].food_type == 1) return create_if_block$1;
+    		if (/*i*/ ctx[5].food_type == 2) return create_if_block_1;
     		return create_else_block$1;
     	}
 
@@ -38453,7 +38453,11 @@ var app = (function () {
     	let if_block = current_block_type(ctx);
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[1](/*i*/ ctx[3]);
+    		return /*click_handler*/ ctx[2](/*i*/ ctx[5]);
+    	}
+
+    	function click_handler_1() {
+    		return /*click_handler_1*/ ctx[3](/*i*/ ctx[5]);
     	}
 
     	return {
@@ -38479,20 +38483,19 @@ var app = (function () {
     			t10 = text(t10_value);
     			t11 = space();
     			td5 = element("td");
-    			a = element("a");
-    			t12 = text("Confirm");
+    			button0 = element("button");
+    			button0.textContent = "Confirm";
     			t13 = space();
-    			button = element("button");
-    			button.textContent = "Delete";
+    			button1 = element("button");
+    			button1.textContent = "Delete";
     			t15 = space();
     			attr(td0, "class", "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center");
     			attr(td1, "class", "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4");
     			attr(td2, "class", "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4");
     			attr(td3, "class", "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4");
     			attr(td4, "class", "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4");
-    			attr(a, "href", "/deliveryman/adddeliveryman/" + /*i*/ ctx[3]._id);
-    			attr(a, "class", "bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150");
-    			attr(button, "class", "bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150");
+    			attr(button0, "class", "bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150");
+    			attr(button1, "class", "bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150");
     			attr(td5, "class", "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right");
     		},
     		m(target, anchor) {
@@ -38516,16 +38519,15 @@ var app = (function () {
     			append(td4, t10);
     			append(tr, t11);
     			append(tr, td5);
-    			append(td5, a);
-    			append(a, t12);
+    			append(td5, button0);
     			append(td5, t13);
-    			append(td5, button);
+    			append(td5, button1);
     			append(tr, t15);
 
     			if (!mounted) {
     				dispose = [
-    					action_destroyer(link.call(null, a)),
-    					listen(button, "click", click_handler)
+    					listen(button0, "click", click_handler),
+    					listen(button1, "click", click_handler_1)
     				];
 
     				mounted = true;
@@ -38544,7 +38546,7 @@ var app = (function () {
     	};
     }
 
-    // (112:30)               <p>loading</p>            {:then restaurants}
+    // (126:30)               <p>loading</p>            {:then restaurants}
     function create_pending_block$2(ctx) {
     	let p;
 
@@ -38613,8 +38615,8 @@ var app = (function () {
     		pending: create_pending_block$2,
     		then: create_then_block$2,
     		catch: create_catch_block$2,
-    		value: 2,
-    		error: 6
+    		value: 4,
+    		error: 8
     	};
 
     	handle_promise(fetchData$2(), info);
@@ -38782,7 +38784,7 @@ var app = (function () {
 
     			{
     				const child_ctx = ctx.slice();
-    				child_ctx[2] = child_ctx[6] = info.resolved;
+    				child_ctx[4] = child_ctx[8] = info.resolved;
     				info.block.p(child_ctx, dirty);
     			}
 
@@ -38808,7 +38810,7 @@ var app = (function () {
     const nonVeg = "../assets/img/nonveg.jpg";
 
     async function fetchData$2() {
-    	const res = await fetch(`${baseUrl$3}`, {
+    	const res = await fetch(`${baseUrl$3}/false`, {
     		method: "GET",
     		headers: { "Content-Type": "application/json" }
     	});
@@ -38835,14 +38837,31 @@ var app = (function () {
     function instance$5($$self, $$props, $$invalidate) {
     	
     	
+
+    	let updateRestaurant = async () => {
+    		const data = { isapproved: true };
+
+    		const res = await fetch(`${baseUrl$3}/${objectId}`, {
+    			method: "PUT",
+    			headers: { "Content-Type": "application/json" },
+    			body: JSON.stringify(data)
+    		});
+
+    		const restaurant = res.json();
+
+    		// dispatch("postCreated", restaurant);
+    		return await restaurant;
+    	};
+
     	let { color = "light" } = $$props;
-    	const click_handler = i => deleteNote$2(i._id);
+    	const click_handler = i => updateRestaurant(i._id);
+    	const click_handler_1 = i => deleteNote$2(i._id);
 
     	$$self.$$set = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     	};
 
-    	return [color, click_handler];
+    	return [color, updateRestaurant, click_handler, click_handler_1];
     }
 
     class RestaurantApprovel extends SvelteComponent {

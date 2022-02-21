@@ -24,7 +24,7 @@ const upload = multer({ storage });
 const blogController = require("./api/controllers/blogcontrollers");
 const restaurantController = require("./api/controllers/restaurantcontrollers");
 const deliveryPersonController = require("./api/controllers/deliverypersoncontroller");
-
+const userController = require("./api/controllers/usercontroller");
 
 
 //configure database and mongoose
@@ -62,7 +62,7 @@ app.post("/blog", blogController.addBlogPost);
 app.delete("/blog/:blogId", blogController.deleteBlogPost);
 app.put("/blog/:blogId", blogController.updateBlogPost);
 
-app.get("/restaurant", restaurantController.allRestaurant);
+app.get("/restaurant/:isapproved?", restaurantController.allRestaurant);
 app.get("/restaurant/:id", restaurantController.getRestaurant);
 app.post("/restaurant", upload.single('file'), restaurantController.addRestaurant);
 app.delete("/restaurant/:id", restaurantController.deleteRestaurant);
@@ -76,6 +76,10 @@ app.get("/deliveryperson/:id", deliveryPersonController.getDeliveryPerson);
 app.post("/deliveryperson", deliveryPersonController.addDeliveryPerson);
 app.delete("/deliveryperson/:id", deliveryPersonController.deleteDeliveryPerson);
 app.put("/deliveryperson/:id", deliveryPersonController.updateDeliveryPerson);
+
+
+app.post("/userAdd", userController.addUser);
+app.post("/login", userController.POSTLogin);
 
 
 app.listen(PORT, () => {

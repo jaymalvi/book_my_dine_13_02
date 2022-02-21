@@ -81,6 +81,25 @@
         data = await res.json(); 
         console.log(data, typeof data.food_type, data.food_type);
       }
+      const location = await getLocation().catch((err) => {
+			console.log(err);
+			window.alert(err.message);
+		});
+		currentLocation = location;
+		map = new window.google.maps.Map(mapContainer, {
+			center: location,
+			zoom: 15,
+		});
+		const marker = new window.google.maps.Marker({
+			position: location,
+			map: map,
+			draggable: true,
+		});
+		marker.addListener("dragend", (e) => {
+			currentLocation.lat = e.latLng.lat();
+			currentLocation.lng = e.latLng.lng();
+			console.log("new Location : ", currentLocation);
+		});
     });
 
   //create functionality
@@ -88,6 +107,7 @@
     event.preventDefault();
     const formData = new FormData();
     delete data._id;
+    data.isapproved= false;
     if (files && files.length > 0) {
       formData.append("file", files[0]);
       console.log(">>>>>>>", formData, files[0])

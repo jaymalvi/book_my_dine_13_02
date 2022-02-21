@@ -10,7 +10,7 @@
       doLoginCheck = fetchData()
     }
     async function fetchData() {
-      const res = await fetch(`${baseUrl}`, {
+      const res = await fetch(`${baseUrl}/false`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -34,6 +34,20 @@
       // await fetchdata();
       return await res.json();
     };
+
+    let updateRestaurant = async () => {
+      const data = {isapproved: true};
+    const res = await fetch(`${baseUrl}/${objectId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      const restaurant = res.json();
+      // dispatch("postCreated", restaurant);
+      return await restaurant;
+  }
 
     
     // --------------------------------------------------------
@@ -172,12 +186,8 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
               >
-              <a 
-                  use:link
-                  href="/deliveryman/adddeliveryman/{i._id}" 
-                  class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
-                   Confirm
-                  </a>
+              <button class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"          
+               on:click={() => updateRestaurant(i._id) }>Confirm</button>
               <button class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"          
                on:click={() => deleteNote(i._id) }>Delete</button>
                 <!-- <button>Edit</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-danger" on:click|preventDefault={deleteNote(i._id)}>Delete</button> -->

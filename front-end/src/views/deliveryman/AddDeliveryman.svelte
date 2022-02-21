@@ -27,7 +27,7 @@
 
   onMount(async () => {
       console.log('the component has mounted', objectId);
-      if (objectId != "/deliveryman/adddeliveryman") {
+      if (objectId != "adddeliveryman") {
         const res = await fetch(`${baseUrl}/${objectId}`, {
           method: "GET",
           headers: {
@@ -40,7 +40,7 @@
     });
 
     //create functionality
-  let addDeliveryPerson = async () => {
+  async function addDeliveryPerson() {
     const res = await fetch(`${baseUrl}`, {
         method: "POST",
         headers: {
@@ -124,7 +124,7 @@
     <div class="block w-full overflow-x-auto">
           <!-- Restaurant info -->
           <div class="col-sm-12 col-lg-12 mb-3 mb-lg-2">
-             <form>
+            <form method="post" >
               
   
                 <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase" style="margin-left: 2%;">
@@ -345,15 +345,15 @@
                 <div class="flex flex-wrap">
                   <div class="w-full lg:w-12/12 px-4" style="margin-block: 2%;">
                     <div class="relative w-full mb-3">
-                      <button type="submit" on:click|preventDefault={addDeliveryPerson} class="btn btn-primary">
-                    </button>
                     {#if objectId != "adddeliveryman" }
-                    <button type="submit" on:click|preventDefault={updateDeliveryPerson} class="btn btn-primary">
-                      Update Note
-                    </button>  
-                    {:else}
-                    <input type="submit" value="Add Note" class="btn btn-primary" />
-                    {/if}
+                      <button type="submit" on:click|preventDefault={updateDeliveryPerson} class="btn btn-primary">
+                        Update Delivery Person
+                      </button>  
+                      {:else}
+                      <button type="submit" on:click|preventDefault={addDeliveryPerson} class="btn btn-primary">
+                        Add Delivery Person
+                      </button>
+                      {/if}
                       <!-- <a 
                        use:link
                        href="/deliveryman/managedeliveryman" 

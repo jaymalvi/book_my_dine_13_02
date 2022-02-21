@@ -8,7 +8,7 @@
       doLoginCheck = fetchData()
     }
     async function fetchData() {
-      const res = await fetch(`${baseUrl}`, {
+      const res = await fetch(`${baseUrl}/true`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
