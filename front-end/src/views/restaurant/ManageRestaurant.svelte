@@ -8,7 +8,7 @@
       doLoginCheck = fetchData()
     }
     async function fetchData() {
-      const res = await fetch(`${baseUrl}/true`, {
+      const res = await fetch(`http://localhost:4000/approved-restaurant/true`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -57,7 +57,7 @@
   
   <div
     class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded {color === 'light' ? 'bg-white' : 'bg-red-800 text-white'}"
-  >
+   >
     <div class="rounded-t mb-0 px-4 py-3 border-1">
       <div class="flex flex-wrap items-center">
         <div class="relative w-full px-4 max-w-full flex-grow flex-1">

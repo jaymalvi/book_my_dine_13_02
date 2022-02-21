@@ -109,7 +109,7 @@ export let location;
                 </a>
             </li>
 
-            <!-- <li class="items-center">
+            <li class="items-center">
                 <a
                     use:link
                     href="/admin/settings"
@@ -122,7 +122,7 @@ export let location;
                 </a>
             </li>
 
-            <li class="items-center">
+            <!--<li class="items-center">
                 <a
                     use:link
                     href="/admin/tables"
@@ -194,7 +194,7 @@ export let location;
             >
             <a
                 use:link
-                href="#"
+                href="/deliveryman/managedeliveryman"
                 class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/restaurant/managerestaurant') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
                 >
                 <i
@@ -238,6 +238,75 @@ export let location;
                 </a>
             </li>
         </ul>
+
+        <!-- Divider -->
+        <hr class="my-4 md:min-w-full" />
+
+        <!-- Heading -->
+        <h6
+            class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+            >
+            Product Section
+        </h6>
+        <!-- Navigation -->
+
+        <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/productsection/managecategory"
+                    >
+                    <i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
+                    Category
+                </a>
+            </li>
+
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/productsection/managesubcategory"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Subcategory
+                </a>
+            </li>
+
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/productsection/manageaddon"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Addon
+                </a>
+            </li>
+
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/productsection/manageattribute"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Attridute
+                </a>
+            </li>
+
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/productsection/manageproduct"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Product
+                </a>
+            </li>
+        </ul>
+
 
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />

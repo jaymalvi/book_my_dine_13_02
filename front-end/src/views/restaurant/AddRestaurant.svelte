@@ -66,11 +66,10 @@
     phone: "",
     email: "",
     password: "",
-    _id: ""
   };
 
     onMount(async () => {
-      console.log('the component has mounted', objectId);
+      console.log('the component has mounted', objectId, objectId != "addrestaurant");
       if (objectId != "addrestaurant") {
         const res = await fetch(`${baseUrl}/${objectId}`, {
           method: "GET",
@@ -79,28 +78,29 @@
           },
         });
         data = await res.json(); 
-        console.log(data, typeof data.food_type, data.food_type);
+        // console.log(data, typeof data.food_type, data.food_type);
       }
-      const location = await getLocation().catch((err) => {
-			console.log(err);
-			window.alert(err.message);
-		});
-		currentLocation = location;
-		map = new window.google.maps.Map(mapContainer, {
-			center: location,
-			zoom: 15,
-		});
-		const marker = new window.google.maps.Marker({
-			position: location,
-			map: map,
-			draggable: true,
-		});
-		marker.addListener("dragend", (e) => {
-			currentLocation.lat = e.latLng.lat();
-			currentLocation.lng = e.latLng.lng();
-			console.log("new Location : ", currentLocation);
-		});
     });
+    //   const location = await getLocation().catch((err) => {
+		// 	console.log(err);
+		// 	window.alert(err.message);
+		// });
+		// currentLocation = location;
+		// map = new window.google.maps.Map(mapContainer, {
+		// 	center: location,
+		// 	zoom: 15,
+		// });
+		// const marker = new window.google.maps.Marker({
+		// 	position: location,
+		// 	map: map,
+		// 	draggable: true,
+		// });
+		// marker.addListener("dragend", (e) => {
+		// 	currentLocation.lat = e.latLng.lat();
+		// 	currentLocation.lng = e.latLng.lng();
+		// 	console.log("new Location : ", currentLocation);
+		// });
+    // });
 
   //create functionality
   async function submitForm(event) {

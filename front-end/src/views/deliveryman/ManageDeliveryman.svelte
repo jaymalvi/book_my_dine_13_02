@@ -8,7 +8,7 @@
       doLoginCheck = fetchData()
     }
     async function fetchData() {
-      const res = await fetch(`${baseUrl}`, {
+      const res = await fetch(`http://localhost:4000/approved-DeliveryPerson/true`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

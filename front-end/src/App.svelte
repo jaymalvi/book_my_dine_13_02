@@ -23,6 +23,8 @@
   import Profile from "./views/Profile.svelte";
 import Restaurant from "./layouts/Restaurant.svelte";
 import Deliveryman from "./layouts/Restaurant.svelte";
+import ProductSection from "./layouts/Restaurant.svelte";
+
 // import AddResto from "./views/restaurant/AddRestaurant.svelte";
 
 
@@ -41,6 +43,8 @@ import Deliveryman from "./layouts/Restaurant.svelte";
   <Route path="order/*order" component="{Order}" />
   <!-- deliveryman layout -->
   <Route path="deliveryman/*deliveryman" component="{Deliveryman}" />
+  <!-- productSection layout -->
+  <Route path="productsection/*productsection/*" component="{ProductSection}" />
   <!-- auth layout -->
   <Route path="auth/*auth" component="{Auth}" />
   <!-- no layout pages -->

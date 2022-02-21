@@ -2,7 +2,7 @@ const DeliveryPerson = require("../models/DeliveryPerson");
 
 exports.allDeliveryPerson = async (req, res) => {
   try {
-    const result = await DeliveryPerson.find();
+    const result = await DeliveryPerson.find({isapproved: req.params.isapproved});
     res.status(200).json(result);
   } catch (err) {
     res.status(500).json(err);

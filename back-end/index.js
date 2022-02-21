@@ -25,6 +25,14 @@ const blogController = require("./api/controllers/blogcontrollers");
 const restaurantController = require("./api/controllers/restaurantcontrollers");
 const deliveryPersonController = require("./api/controllers/deliverypersoncontroller");
 const userController = require("./api/controllers/usercontroller");
+const categoryController = require("./api/controllers/categorycontrollers");
+const subcategoryController = require("./api/controllers/subcategorycontrollers");
+const addonController = require("./api/controllers/addoncontrollers");
+const attributeController = require("./api/controllers/attributecontrollers");
+const productController = require("./api/controllers/productcontrollers");
+
+
+
 
 
 //configure database and mongoose
@@ -62,21 +70,50 @@ app.post("/blog", blogController.addBlogPost);
 app.delete("/blog/:blogId", blogController.deleteBlogPost);
 app.put("/blog/:blogId", blogController.updateBlogPost);
 
-app.get("/restaurant/:isapproved?", restaurantController.allRestaurant);
 app.get("/restaurant/:id", restaurantController.getRestaurant);
+app.get("/approved-restaurant/:isapproved?", restaurantController.allRestaurant);
 app.post("/restaurant", upload.single('file'), restaurantController.addRestaurant);
 app.delete("/restaurant/:id", restaurantController.deleteRestaurant);
 app.put("/restaurant/:id", restaurantController.updateRestaurant);
 app.get("/dashboard", restaurantController.dashboard);
 
 
-
-app.get("/deliveryPerson", deliveryPersonController.allDeliveryPerson);
 app.get("/deliveryperson/:id", deliveryPersonController.getDeliveryPerson);
+app.get("/approved-deliveryPerson/:isapproved?", deliveryPersonController.allDeliveryPerson);
+app.get("/deliveryPerson", deliveryPersonController.allDeliveryPerson);
 app.post("/deliveryperson", deliveryPersonController.addDeliveryPerson);
 app.delete("/deliveryperson/:id", deliveryPersonController.deleteDeliveryPerson);
 app.put("/deliveryperson/:id", deliveryPersonController.updateDeliveryPerson);
 
+app.get("/category",categoryController.allCategory);
+app.get("/category/:id", categoryController.getCategory);
+app.post("/category", categoryController.addCategory);
+app.delete("/category/:categoryId", categoryController.deleteCategory);
+app.put("/category/:categoryId", categoryController.updateCategory);
+
+app.get("/subcategory",subcategoryController.allSubCategory);
+app.get("/subcategory/:id", subcategoryController.getSubCategory);
+app.post("/subcategory", subcategoryController.addSubCategory);
+app.delete("/subcategory/:subcategoryId", subcategoryController.deleteSubCategory);
+app.put("/subcategory/:subcategoryId", subcategoryController.updateSubCategory);
+
+app.get("/addon",addonController.allAddon);
+app.get("/addon/:id", addonController.getAddon);
+app.post("/addon", addonController.addAddon);
+app.delete("/addon/:addonId", addonController.deleteAddon);
+app.put("/addon/:addonId", addonController.updateAddon);
+
+app.get("/attribute",attributeController.allAttribute);
+app.get("/attribute/:id", attributeController.getAttribute);
+app.post("/attribute", attributeController.addAttribute);
+app.delete("/attribute/:attributeId", attributeController.deleteAttribute);
+app.put("/attribute/:attributeId", attributeController.updateAttribute);
+
+app.get("/product",productController.allProduct);
+app.get("/product/:id", productController.getProduct);
+app.post("/product", productController.addProduct);
+app.delete("/product/:productId", productController.deleteProduct);
+app.put("/product/:productId", productController.updateProduct);
 
 app.post("/userAdd", userController.addUser);
 app.post("/login", userController.POSTLogin);

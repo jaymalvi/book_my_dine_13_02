@@ -17,8 +17,8 @@ exports.dashboard = async (req, res) => {
   try {
     const { id } = req.params;
     console.log(req.params);
-    const restaurant = await Restaurant.count();
-    const deliveryperson = await DeliveryPerson.count();
+    const restaurant = await Restaurant.count({isapproved:true});
+    const deliveryperson = await DeliveryPerson.count({isapproved:true});
 
     res.status(200).json({restaurant,deliveryperson});
   } catch (err) {

@@ -1,10 +1,75 @@
 <script>
+  const baseUrl = "http://localhost:4000/login";
   import { link } from "svelte-routing";
 
   // core components
   const github = "../assets/img/github.svg";
   const google = "../assets/img/google.svg";
   export let location;
+
+  let data = {
+    email: "",
+    password: "",
+  };
+   let error={
+    email: "",
+    password: "",
+   };
+
+
+
+  // async function submitForm(event) {
+  //   event.preventDefault();
+  //   const formData = new FormData();
+  //   delete data._id;
+  //   // data.isapproved= false;
+  //   if (files && files.length > 0) {
+  //     formData.append("file", files[0]);
+  //     console.log(">>>>>>>", formData, files[0])
+  //   }
+  //   formData.append("data", JSON.stringify(data));
+  //   // formData.push({...data});
+  //   const response = await fetch(`${baseUrl}`, {
+  //     method: "POST",
+  //     // headers: [["Content-Type", "multipart/form-data"]],
+  //     body: formData,
+  //     // headers: {"Content-Type": "multipart/form-data"},
+  //   });
+  //   const restaurant = response.json();
+  //   // dispatch("postCreated", restaurant);
+  //   return await restaurant;
+  // }
+
+  let addUser = async () => {
+    // data.file = files;
+    const res = await fetch(`${baseUrl}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      console.log(result);
+
+      if (result && result.error) {
+        console.log(result.message);
+        error.email = result.message.email && result.message.email[0] && result.message.email[0] ? result.message.email[0] : "";
+        error.password = result.message.password && result.message.password[0] && result.message.password[0] ? result.message.password[0] : "";
+      }
+
+      if (result.error === "Email_not_found") {
+        error.email = "User doesn't exist!";
+        error.password = ""
+      }
+
+      if (result && result.token) {
+        // 
+      }
+      // dispatch("postCreated", restaurant);
+      return await result;
+  }
+
 </script>
 
 <div class="container mx-auto px-4 h-full">
@@ -41,7 +106,7 @@
           <div class="text-blueGray-400 text-center mb-3 font-bold">
             <small>Or sign in with credentials</small>
           </div>
-          <form>
+          <form method="post">
             <div class="relative w-full mb-3">
               <label
                 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -54,7 +119,9 @@
                 type="email"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Email"
+                bind:value={data.email}
               />
+              <p style="color: red">{error.email}</p>
             </div>
 
             <div class="relative w-full mb-3">
@@ -69,7 +136,9 @@
                 type="password"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Password"
+                bind:value={data.password}
               />
+              <p style="color: red">{error.password}</p>
             </div>
             <div>
               <label class="inline-flex items-center cursor-pointer">
@@ -85,12 +154,15 @@
             </div>
 
             <div class="text-center mt-6">
+              <a use:link href="/admin/dashboard" class="text-blueGray-200">
               <button
                 class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
+                on:click|preventDefault={addUser}
               >
                 Sign In
               </button>
+              </a>
             </div>
           </form>
         </div>

@@ -14,6 +14,18 @@
     import ManageDeliveryman from "views/deliveryman/ManageDeliveryman.svelte";
     import AddDeliveryman from "views/deliveryman/AddDeliveryman.svelte";
     import DeliveryPersonApprovel from "views/deliveryman/DeliveryPersonApprovel.svelte";
+    import ManageCategory from "views/productsection/ManageCategory.svelte";
+    import AddCategory from "views/productsection/AddCategory.svelte";
+    import ManageSubCategory from "views/productsection/ManageSubCategory.svelte";
+    import AddSubCategory from "views/productsection/AddSubCategory.svelte";
+    import ManageAddon from "views/productsection/ManageAddon.svelte";
+    import AddAddon from "views/productsection/AddAddon.svelte";
+    import manageattribute from "views/productsection/ManageAttribute.svelte";
+    import AddAttribute from "views/Productsection/AddAttribute.svelte";
+    import manageproduct from "views/productsection/ManageProduct.svelte";
+    import Addproduct from "views/Productsection/AddProduct.svelte";
+import ManageProduct from "../views/Productsection/ManageProduct.svelte";
+
 
     // import AddRestaurant from "views/restaurant/ManageRestaurant/AddRestaurant.svelte";
    
@@ -45,8 +57,24 @@
           <Route path="adddeliveryman" component="{AddDeliveryman}" />
           <Route path="deliverypersonapprovel" component="{DeliveryPersonApprovel}" />
           <Route path="adddeliveryman/:id" component="{AddDeliveryman}" />
- 
-  
+        </Router>
+
+        <Router url="productsection">
+          <Route path="managecategory" component="{ManageCategory}" />
+          <Route path="addcategory" component="{AddCategory}" />
+          <Route path="addcategory/:id" component="{AddCategory}" />
+          <Route path="managesubcategory" component="{ManageSubCategory}" />
+          <Route path="addsubcategory" component="{AddSubCategory}" />
+          <Route path="addsubcategory/:id" component="{AddSubCategory}" />
+          <Route path="manageaddon" component="{ManageAddon}" />
+          <Route path="addaddon" component="{AddAddon}" />
+          <Route path="addaddon/:id" component="{AddAddon}" />
+          <Route path="manageattribute" component="{manageattribute}" />
+          <Route path="addattribute" component="{AddAttribute}" />
+          <Route path="addattribute/:id" component="{AddAttribute}" />
+          <Route path="manageproduct" component="{ManageProduct}" />
+          <Route path="addproduct" component="{Addproduct}" />
+          <Route path="addproduct/:id" component="{Addproduct}" />
         </Router>
         
         <FooterAdmin />

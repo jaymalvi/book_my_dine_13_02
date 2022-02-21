@@ -36,9 +36,17 @@ let deliveryPersonSchema = mongoose.Schema({
     type: String,
     required: false
   },
+  isapproved: {
+    type: Boolean,
+    required: false
+  },
   password: {
     type: String,
     required: false
+  },
+  created: {
+    type: Date,
+    default: Date.now()
   }
 });
 const DeliveryPerson = mongoose.model("DeliveryPerson", deliveryPersonSchema);

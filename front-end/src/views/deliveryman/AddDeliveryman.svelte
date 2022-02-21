@@ -41,6 +41,7 @@
 
     //create functionality
   async function addDeliveryPerson() {
+    data.isapproved= false;
     const res = await fetch(`${baseUrl}`, {
         method: "POST",
         headers: {
@@ -50,7 +51,11 @@
       });
       const deliveryperson = res.json();
       // dispatch("postCreated", restaurant);
-      return await deliveryperson;
+      // return await deliveryperson;
+      return {
+            status: 200,
+            redirect: "/deliveryman/managedeliveryman"
+        };
   }
 
   //update functionality
