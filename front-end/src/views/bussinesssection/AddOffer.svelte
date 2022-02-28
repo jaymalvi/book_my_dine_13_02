@@ -1,7 +1,6 @@
 <script>
     const baseUrl = "http://localhost:4000/addon";
     import { onMount } from 'svelte';
-    import { navigate } from "svelte-routing";
     import {
       link
     } from "svelte-routing";
@@ -55,7 +54,11 @@
     
       let data = {
         name: "",
-        price:"",
+        minorder:"",
+        maxdiscount:"",
+        startdate:"",
+        expiredate:"",
+
       };
     
         onMount(async () => {
@@ -106,7 +109,6 @@
           });
           console.log(JSON.stringify(data));
           const addon = res.json();
-          navigate("/productsection/manageaddon", { replace: true });
           // dispatch("postCreated", restaurant);
           return await addon;
       }
@@ -120,7 +122,6 @@
             body: JSON.stringify(data)
           });
           const addon = res.json();
-          navigate("/productsection/manageaddon", { replace: true });
           // dispatch("postCreated", restaurant);
           return await addon;
       }
@@ -164,10 +165,10 @@
               
                <form method="post" enctype="multipart/form-data">
                 <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase" style="margin-left: 2%;">
-                   Add New Addon
+                   Add Offer
                 </h6>
                 <div class="flex flex-wrap">
-                  <div class="w-full lg:w-6/12 px-4">
+                  <div class="w-full lg:w-12/12 px-4">
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -179,7 +180,7 @@
                         id="name"
                         type="text"
                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Addon Name"
+                        placeholder="Offer Name"
                         bind:value={data.name}
                       />
                     </div>
@@ -190,12 +191,12 @@
                   <div class="relative w-full mb-3">
                     <label
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    for="price"
+                    for="minorder"
                   >
-                   Price (₹)
+                   Min Order (₹)
                   </label>
                   <input
-                    id="price"
+                    id="minorder"
                     type="number"
                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="10"
@@ -203,6 +204,60 @@
                   />
                   </div>
                  </div>
+
+                 <div class="w-full lg:w-6/12 px-4">
+                    <div class="relative w-full mb-3">
+                      <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      for="maxorder"
+                    >
+                     Max Discount (₹)
+                    </label>
+                    <input
+                      id="maxorder"
+                      type="number"
+                      class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="10"
+                      bind:value={data.maxdiscount}
+                    />
+                    </div>
+                   </div>
+
+                   <div class="w-full lg:w-6/12 px-4">
+                    <div class="relative w-full mb-3">
+                      <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      for="startdate"
+                    >
+                     Start Date
+                    </label>
+                    <input
+                      id="startdate"
+                      type="date"
+                      class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="10"
+                      bind:value={data.maxdiscount}
+                    />
+                    </div>
+                   </div>
+
+                   <div class="w-full lg:w-6/12 px-4">
+                    <div class="relative w-full mb-3">
+                      <label
+                      class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      for="expiredate"
+                    >
+                     Expire Date
+                    </label>
+                    <input
+                      id="expiredate"
+                      type="date"
+                      class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="10"
+                      bind:value={data.expiredate}
+                    />
+                    </div>
+                   </div>
                
              
               

@@ -1,6 +1,7 @@
 <script>
   const baseUrl = "http://localhost:4000/restaurant";
   import { onMount } from 'svelte';
+  import { navigate } from "svelte-routing";
 
   // ===============================
   let selected = 1;
@@ -137,6 +138,7 @@
       });
       console.log(JSON.stringify(data));
       const restaurant = res.json();
+      navigate("/restaurant/restaurantapprovel", { replace: true });
       // dispatch("postCreated", restaurant);
       return await restaurant;
   }
@@ -150,6 +152,7 @@
         body: JSON.stringify(data)
       });
       const restaurant = res.json();
+      navigate("/restaurant/managerestaurant", { replace: true });
       // dispatch("postCreated", restaurant);
       return await restaurant;
   }
@@ -587,18 +590,21 @@ export let color = "light";
               <div class="flex flex-wrap">
                 <div class="w-full lg:w-12/12 px-4" style="margin-block: 2%;">
                   <div class="relative w-full mb-3">
+                    <a 
+                use:link
+                href="/restaurant/managerestaurant" 
+                class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
+                Back
+                </a>
+                    <!-- {#if objectId != "addrestaurant" }
+                    <button type="submit" on:click|preventDefault={updateRestaurant} class="btn btn-primary">
+                      Update Restaurant
+                    </button>  
+                    {:else}
                     <button type="submit" on:click|preventDefault={addRestaurant} class="btn btn-primary">
+                      Add Restaurant
                     </button>
-                      {#if objectId != "addrestaurant" }
-                      <button type="submit" on:click|preventDefault={updateRestaurant} class="btn btn-primary">
-                        Update Note
-                      </button>  
-                      {:else}
-                      <input type="submit" value="Add Note" class="btn btn-primary" />
-                      <!-- <button type="submit" on:click|preventDefault={addRestaurant} class="btn btn-primary">
-                        Add Note
-                      </button> -->
-                      {/if}
+                    {/if} -->
                     <!-- <a 
                      use:link
                      href="/restaurant/managerestaurant" 

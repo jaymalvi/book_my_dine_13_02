@@ -1,6 +1,7 @@
 <script>
     const baseUrl = "http://localhost:4000/attribute";
     import { onMount } from 'svelte';
+    import { navigate } from "svelte-routing";
     import {
       link
     } from "svelte-routing";
@@ -103,9 +104,10 @@
             body: JSON.stringify(data)
           });
           console.log(JSON.stringify(data));
-          const category = res.json();
+          const attribute = res.json();
+          navigate("/productsection/manageattribute", { replace: true });
           // dispatch("postCreated", restaurant);
-          return await category;
+          return await attribute;
       }
       //update functionality
       let updateAttribute = async () => {
@@ -116,9 +118,10 @@
             },
             body: JSON.stringify(data)
           });
-          const category = res.json();
+          const attribute = res.json();
+          navigate("/productsection/manageattribute", { replace: true });
           // dispatch("postCreated", restaurant);
-          return await category;
+          return await attribute;
       }
       // =========================================
     

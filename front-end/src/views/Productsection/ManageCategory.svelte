@@ -1,6 +1,23 @@
 <script>
     // core components
     // import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
+    import Switch from '../Switch.svelte';
+    import { navigate } from "svelte-routing";
+    // import { goto } from 'sapper';
+
+	let acceptTerms = false;
+
+  const loginData = JSON.parse(localStorage.getItem("loginData"));
+        // const loginData = getContext("loginData");
+        console.log(">>>>>>>>>>>", loginData);
+        if (loginData && loginData.user && loginData.user.type && loginData.user.type === "admin") {
+          console.log("Looged in user.......");
+        } else {
+
+          console.log("UNAUTH user.......");
+          // navigate("/auth/login", { replace: true });
+        }
+  
 
     // --------------------------------------------------------
     const baseUrl = "http://localhost:4000/category";
@@ -30,6 +47,7 @@
         location.reload()
       })
       // await fetchdata();
+      navigate("/productsection/managecategory", { replace: true });
       return await res.json();
     };
 
@@ -124,6 +142,14 @@
                   class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"
                 />
              </td>
+
+             <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+              <Switch bind:checked={acceptTerms}></Switch>
+              <br>
+              {acceptTerms == false ? "ACTIVE" : "INACTIVE" }
+             </td>
                 
             <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
@@ -135,7 +161,7 @@
                  Edit
                 </a>
               <button class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"          
-               on:click={() => deleteNote(i._id) }>Delete</button>
+               on:click|preventDefault={() => deleteNote(i._id) }>Delete</button>
                 <!-- <button>Edit</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-danger" on:click|preventDefault={deleteNote(i._id)}>Delete</button> -->
             </td>
             </tr>

@@ -1,6 +1,7 @@
 <script>
   const baseUrl = "http://localhost:4000/category";
   import { onMount } from 'svelte';
+  import { navigate } from "svelte-routing";
   import {
     link
   } from "svelte-routing";
@@ -57,6 +58,9 @@
     };
   
       onMount(async () => {
+        const loginData = localStorage.getItem("loginData", data);
+        // const loginData = getContext("loginData");
+        console.log(">>>>>>>>>>>", loginData);
         console.log('the component has mounted', objectId);
         if (objectId != "addcategory") {
           const res = await fetch(`${baseUrl}/${objectId}`, {
@@ -66,6 +70,7 @@
             },
           });
           data = await res.json(); 
+          
           // console.log(data, typeof data.food_type, data.food_type);
         }
       });
@@ -104,6 +109,7 @@
         });
         console.log(JSON.stringify(data));
         const category = res.json();
+        navigate("/productsection/managecategory", { replace: true });
         // dispatch("postCreated", restaurant);
         return await category;
     }
@@ -117,6 +123,7 @@
           body: JSON.stringify(data)
         });
         const category = res.json();
+        navigate("/productsection/managecategory", { replace: true });
         // dispatch("postCreated", restaurant);
         return await category;
     }

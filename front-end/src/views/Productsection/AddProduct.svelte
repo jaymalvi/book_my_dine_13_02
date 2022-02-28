@@ -1,11 +1,14 @@
 <script>
     const baseUrl = "http://localhost:4000/product";
+
     import Tags from "svelte-tags-input";
     import { onMount } from "svelte";
+    import { navigate } from "svelte-routing";
     import { link } from "svelte-routing";
     import { each } from "svelte/internal";
+    
     export let color = "light";
-  
+    
     // ===============================
     let selected = 1;
     let files;
@@ -61,13 +64,21 @@
       addonRef: "",
       attributeRef: "",
     };
-  
     let categoryData = [];
     let subcategoryData = [];
     let addonData = [];
     let attributeData = [];
+    let categoryId = "";
 
-    
+    let getSubCategoryData = async (categoryId) => {
+      const res1 = await fetch(`http://localhost:4000/subcategoryById/${categoryId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      subcategoryData = await res1.json();
+    }
   
     onMount(async () => {
       console.log("the component has mounted", objectId);
@@ -78,14 +89,13 @@
         },
       });
       categoryData = await res.json();
-
-      const res1 = await fetch(`http://localhost:4000/subcategory`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      subcategoryData = await res1.json();
+      // const res1 = await fetch(`http://localhost:4000/subcategoryById/${categoryId}`, {
+      //   method: "GET",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      // subcategoryData = await res1.json();
 
       const res2 = await fetch(`http://localhost:4000/addon`, {
         method: "GET",
@@ -102,6 +112,7 @@
         },
       });
       attributeData = await res3.json();
+      console.log(attributeData);
 
       if (objectId != "addproduct") {
         const productData = await fetch(`${baseUrl}/${objectId}`, {
@@ -251,7 +262,7 @@
                 </div>
             </div>
 
-            <div class="w-full lg:w-4/12 px-4">
+            <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -269,7 +280,7 @@
                 </div>
               </div>
 
-              <div class="w-full lg:w-4/12 px-4">
+              <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -287,29 +298,6 @@
                 </div>
               </div>
 
-              <div class="w-full lg:w-4/12 px-4">
-                <div class="relative w-full mb-3">
-                  <label
-                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    for="textype"
-                  >
-                   Tex Type
-                  </label>
-                  <select
-                  id="textype"
-                  bind:value={data.categoryRef}
-                  name="parent_id"
-                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  required=""
-                
-                >
-                 
-                    <option>Amount</option>
-                    <option>Percentage</option>
-               
-                </select>
-                </div>
-              </div>
 
   
             <div class="w-full lg:w-6/12 px-4">
@@ -323,11 +311,13 @@
                 <select
                   id="name"
                   bind:value={data.categoryRef}
+                  on:click="{getSubCategoryData(data.categoryRef)}"
                   name="parent_id"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   required=""
                 
                 >
+                  <option value="0">Select Category</option>
                   {#each categoryData as i}
                     <option value={i._id}>{i.name}</option>
                   {/each}
@@ -362,13 +352,68 @@
                 <div class="relative w-full mb-3">
                   <label
                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    for="attribute"
+                  >
+                    Attribute
+                  </label>
+                  
+                  <select 
+                    id="attribute"
+                    allowDrop=false
+                    bind:value={data.attributeRef}
+                    on:click|preventDefault={addTask}
+                    name="parent_id"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    required=""
+                  
+                  >
+                    {#each attributeData as i}
+                      <option value={i._id}>{i.name}</option>
+                    {/each}
+                  </select>
+                  {#each tasks as task}
+                  <tr>
+                    <td class="w-full lg:w-3/12 px-4">
+                      <label
+                       class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                       for=""
+                      >
+                      Size
+                      </label>
+                    </td>
+                    <td>
+                      
+                    </td>
+
+                  </tr>
+                  <input type="text"
+                  class="w-full lg:w-9/12 px-4"
+                  bind:value={task.name} />
+                  {/each}
+                  <!-- <Svelecte
+                    bind:readSelection={attributeData}
+                    bind:value={data.attributeRef}
+                    multiple
+                    placeholder="Select cuisines"
+                  /> -->
+
+<!-- <button on:click|preventDefault={addTask}>Add task</button> -->
+                </div>
+              </div>
+
+              <div class="w-full lg:w-12/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label
+                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     for="name"
                   >
                     Addon
                   </label>
+
                   
                   <select 
                     id="name"
+                    multiple
                     allowDrop=false
                     bind:value={data.addonRef}
                     name="parent_id"

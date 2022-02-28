@@ -2,7 +2,7 @@
   import { Router, Route } from "svelte-routing";
 
   // components for this layout
-  import AuthNavbar from "components/Navbars/AuthNavbar.svelte";
+  // import AuthNavbar from "components/Navbars/AuthNavbar.svelte";
   import FooterSmall from "components/Footers/FooterSmall.svelte";
 
   // pages for this layout
@@ -15,7 +15,7 @@
 </script>
 
 <div>
-  <AuthNavbar />
+  <!-- <AuthNavbar /> -->
   <main>
     <section class="relative w-full h-full py-40 min-h-screen">
       <div

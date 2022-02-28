@@ -91,6 +91,7 @@ app.post("/category", categoryController.addCategory);
 app.delete("/category/:categoryId", categoryController.deleteCategory);
 app.put("/category/:categoryId", categoryController.updateCategory);
 
+app.get("/subcategoryById/:id",subcategoryController.subCategoryById);
 app.get("/subcategory",subcategoryController.allSubCategory);
 app.get("/subcategory/:id", subcategoryController.getSubCategory);
 app.post("/subcategory", subcategoryController.addSubCategory);
@@ -118,6 +119,7 @@ app.put("/product/:productId", productController.updateProduct);
 app.post("/userAdd", userController.addUser);
 app.post("/login", userController.POSTLogin);
 
+app.post("/restaurantAdd", userController.POSTRestaurant);
 
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);

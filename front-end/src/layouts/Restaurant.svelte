@@ -20,11 +20,15 @@
     import AddSubCategory from "views/productsection/AddSubCategory.svelte";
     import ManageAddon from "views/productsection/ManageAddon.svelte";
     import AddAddon from "views/productsection/AddAddon.svelte";
-    import manageattribute from "views/productsection/ManageAttribute.svelte";
+    import Manageattribute from "views/productsection/ManageAttribute.svelte";
     import AddAttribute from "views/Productsection/AddAttribute.svelte";
-    import manageproduct from "views/productsection/ManageProduct.svelte";
+    import ManageProduct from "views/productsection/ManageProduct.svelte";
     import Addproduct from "views/Productsection/AddProduct.svelte";
-import ManageProduct from "../views/Productsection/ManageProduct.svelte";
+    import Offer from "views/bussinesssection/offer.svelte";
+    import AddOffer from "../views/bussinesssection/addoffer.svelte";
+    import Reviews from "../views/bussinesssection/Reviews.svelte";
+
+    // import ManageProduct from "views/Productsection/ManageProduct.svelte";
 
 
     // import AddRestaurant from "views/restaurant/ManageRestaurant/AddRestaurant.svelte";
@@ -69,12 +73,18 @@ import ManageProduct from "../views/Productsection/ManageProduct.svelte";
           <Route path="manageaddon" component="{ManageAddon}" />
           <Route path="addaddon" component="{AddAddon}" />
           <Route path="addaddon/:id" component="{AddAddon}" />
-          <Route path="manageattribute" component="{manageattribute}" />
+          <Route path="manageattribute" component="{Manageattribute}" />
           <Route path="addattribute" component="{AddAttribute}" />
           <Route path="addattribute/:id" component="{AddAttribute}" />
           <Route path="manageproduct" component="{ManageProduct}" />
           <Route path="addproduct" component="{Addproduct}" />
           <Route path="addproduct/:id" component="{Addproduct}" />
+        </Router>
+
+        <Router url="bussinesssection">
+          <Route path="offer" component="{Offer}" />
+          <Route path="addoffer" component="{AddOffer}" />
+          <Route path="reviews" component="{Reviews}"/>
         </Router>
         
         <FooterAdmin />

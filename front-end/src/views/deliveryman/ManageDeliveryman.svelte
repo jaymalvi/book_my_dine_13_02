@@ -1,6 +1,8 @@
 <script>
     // core components
     // import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
+    import { navigate } from "svelte-routing";
+
 
     // --------------------------------------------------------
     const baseUrl = "http://localhost:4000/DeliveryPerson";
@@ -26,10 +28,9 @@
         headers: {
           "Content-Type": "application/json"
         },
-      }).then(() =>{
-        location.reload()
       })
       // await fetchdata();
+      navigate("/deliveryman/managedeliveryman", { replace: true });
       return await res.json();
     };
 
@@ -155,7 +156,7 @@
                 use:link
                 href="/deliveryman/adddeliveryman/{i._id}" 
                 class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
-                 Edit
+                 View
                 </a>
               <button class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"          
                on:click={() => deleteNote(i._id) }>Delete</button>

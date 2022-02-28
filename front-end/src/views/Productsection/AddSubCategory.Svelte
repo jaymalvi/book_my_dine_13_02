@@ -1,6 +1,7 @@
 <script>
   const baseUrl = "http://localhost:4000/subcategory";
   import { onMount } from "svelte";
+  import { navigate } from "svelte-routing";
   import { link } from "svelte-routing";
   import { each } from "svelte/internal";
   export let color = "light";
@@ -110,9 +111,10 @@
       body: JSON.stringify(data),
     });
     console.log(JSON.stringify(data));
-    const category = res.json();
+    const subcategory = res.json();
+    navigate("/productsection/managesubcategory", { replace: true });
     // dispatch("postCreated", restaurant);
-    return await category;
+    return await subcategory;
   };
   //update functionality
   let updateSubCategory = async () => {
@@ -123,9 +125,10 @@
       },
       body: JSON.stringify(data),
     });
-    const category = res.json();
+    const subcategory = res.json();
+    navigate("/productsection/managesubcategory", { replace: true });
     // dispatch("postCreated", restaurant);
-    return await category;
+    return await subcategory;
   };
   // =========================================
 

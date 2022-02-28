@@ -1,6 +1,7 @@
 <script>
   const baseUrl = "http://localhost:4000/deliveryPerson";
   import { onMount } from 'svelte';
+  import { navigate } from "svelte-routing";
 
 
   export let location;
@@ -50,11 +51,12 @@
         body: JSON.stringify(data)
       });
       const deliveryperson = res.json();
+      navigate("/deliveryman/managedeliveryman", { replace: true });
       // dispatch("postCreated", restaurant);
       // return await deliveryperson;
       return {
             status: 200,
-            redirect: "/deliveryman/managedeliveryman"
+            redirect: "/deliveryman/deliverypersonapprovel"
         };
   }
 
@@ -68,6 +70,7 @@
         body: JSON.stringify(data)
       });
       const deliveryperson = res.json();
+      navigate("/deliveryman/managedeliveryman", { replace: true });
       // dispatch("postCreated", restaurant);
       return await deliveryperson;
   }
@@ -350,7 +353,13 @@
                 <div class="flex flex-wrap">
                   <div class="w-full lg:w-12/12 px-4" style="margin-block: 2%;">
                     <div class="relative w-full mb-3">
-                    {#if objectId != "adddeliveryman" }
+                      <a 
+                      use:link
+                      href="/deliveryman/managedeliveryman" 
+                      class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
+                      Back
+                      </a> 
+                    <!-- {#if objectId != "adddeliveryman" }
                       <button type="submit" on:click|preventDefault={updateDeliveryPerson} class="btn btn-primary">
                         Update Delivery Person
                       </button>  
@@ -358,19 +367,7 @@
                       <button type="submit" on:click|preventDefault={addDeliveryPerson} class="btn btn-primary">
                         Add Delivery Person
                       </button>
-                      {/if}
-                      <!-- <a 
-                       use:link
-                       href="/deliveryman/managedeliveryman" 
-                       class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" style="margin-left:2%;">          
-                       SUBMIT
-                      </a> -->
-                      <!-- <a 
-                       use:link
-                       href="/restaurant/addrestaurant" 
-                       class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" style="margin-left:3%;">          
-                       CANCLE
-                      </a> -->
+                      {/if} -->
                     </div>
                   </div>
                 </div>

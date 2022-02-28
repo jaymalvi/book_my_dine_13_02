@@ -1,17 +1,14 @@
-
 <script>
     // core components
     // import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
-    import { navigate } from "svelte-routing";
-
 
     // --------------------------------------------------------
-    const baseUrl = "http://localhost:4000/addon";
+    const baseUrl = "http://localhost:4000/DeliveryPerson";
     function reloadData() {
       doLoginCheck = fetchData()
     }
     async function fetchData() {
-      const res = await fetch(`${baseUrl}`, {
+      const res = await fetch(`http://localhost:4000/approved-DeliveryPerson/true`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -36,8 +33,7 @@
       return await res.json();
     };
 
-    
-    // --------------------------------------------------------
+     // --------------------------------------------------------
     import {
     link
 } from "svelte-routing";
@@ -48,8 +44,8 @@
     const react = "../assets/img/react.jpg";
     const vue = "../assets/img/react.jpg";
   
-    const veg = "../assets/img/veg.jpg";
-    const nonVeg = "../assets/img/nonveg.jpg";
+    const team1 = "../assets/img/team-1-800x800.jpg";
+    const team2 = "../assets/img/team-2-800x800.jpg";
     const team3 = "../assets/img/team-3-800x800.jpg";
     const team4 = "../assets/img/team-4-470x470.png";
 
@@ -60,46 +56,45 @@
   
   <div
     class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded {color === 'light' ? 'bg-white' : 'bg-red-800 text-white'}"
-   >
+  >
     <div class="rounded-t mb-0 px-4 py-3 border-1">
       <div class="flex flex-wrap items-center">
         <div class="relative w-full px-4 max-w-full flex-grow flex-1">
           <h3
             class="font-semibold text-lg {color === 'light' ? 'text-blueGray-700' : 'text-white'}"
           >
-        Addon
+            Review List
           </h3>
-         <div>
-          <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"><div class="relative flex  flex-wrap items-stretch"><span class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i class="fas fa-search"></i></span> 
-            <input type="text" placeholder="Search here..." class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"></div></form>
          
-          <a 
+          <!-- <a 
           use:link
-          href="/productsection/addaddon" 
+          href="/bussinesssection/addoffer" 
           class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" style="margin-left: 82%;">          
-          <i class="fa fa-plus" aria-hidden="true"></i> Add Addon
-          </a>
-        </div>
+          Add Offer
+          </a> -->
+      
         </div>
       </div>
     </div>
-    <div class="block  overflow-x-auto">
+    <div class="block w-full overflow-x-auto">
       <!-- Projects table -->
       <table class="items-center w-full bg-transparent border-collapse">
         <thead>
           <tr>
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}" >
-             Name
+             Product
             </th>
 
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}">
-             Price (₹)
+             Customer Name
             </th>
 
-            
+            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}" >
+             Review
+            </th>
 
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"> 
-            Action
+            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}" >
+            Rating
             </th>
 
           </tr>
@@ -108,34 +103,45 @@
         <tbody>
           {#await fetchData()}
             <p>loading</p>
-          {:then addons}
-            {#each addons as i}
-            <tr>
-              <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
-              >
-              {i.name}
-              </td>
-              <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-              >
-              {i.price} ₹
-             </td>
-                
+          {:then offers}
+            {#each offers as i}
+          <tr>
+            <th
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+            >
+              <img
+                src="{i.delivery_person_image}"
+                alt="..."
+                class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"
+             />
+            </th>
+
             <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right"
-              >
-              <a 
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+            {i.firstname} {i.lastname}
+            </td>
+            
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+            {i.email}
+            </td>
+
+            <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+            <a 
                 use:link
-                href="/productsection/addaddon/{i._id}" 
+                href="/deliveryman/adddeliveryman/{i._id}" 
                 class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">          
                  Edit
                 </a>
               <button class="bg-red-400 text-white  active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"          
                on:click={() => deleteNote(i._id) }>Delete</button>
-                <!-- <button>Edit</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-danger" on:click|preventDefault={deleteNote(i._id)}>Delete</button> -->
+
             </td>
-            </tr>
+          </tr>
           {/each}
           {:catch error}
             <p style="color: red">{error.message}</p>

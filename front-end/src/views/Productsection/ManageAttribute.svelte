@@ -1,6 +1,8 @@
 <script>
     // core components
     // import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
+    import { navigate } from "svelte-routing";
+
 
     // --------------------------------------------------------
     const baseUrl = "http://localhost:4000/attribute";

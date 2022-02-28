@@ -7,6 +7,19 @@ import {
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.svelte";
 import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
 import OrderDropdown from "components/Dropdowns/OrderDropdown.svelte";
+const loginData = JSON.parse(localStorage.getItem("loginData"));
+        // const loginData = getContext("loginData");
+        console.log(">>>>>>>>>>>...................", loginData);
+        let role = "";
+        let restaurantaname ="";
+        if (loginData && loginData.user && loginData.user.type && loginData.user.type === "admin") {
+          console.log("Looged in user.......");
+          role = loginData.user.type;
+        } else {
+            restaurantaname = loginData.user.name;
+          console.log("UNAUTH user.......");
+        //   navigate("/auth/login", { replace: true });
+        }
 
 
 let collapseShow = "hidden";
@@ -33,68 +46,34 @@ export let location;
       <i class="fas fa-bars"></i>
         </button> -->
         <!-- Brand -->
+        {#if role && role === "admin"}
         <h3> <b>
             BOOK MY DINE
         </b></h3>
-        <!-- User
-    <ul class="md:hidden items-center flex flex-wrap list-none">
-      <li class="inline-block relative">
-        <NotificationDropdown />
-      </li>
-      <li class="inline-block relative">
-        <UserDropdown />
-      </li>
-    </ul>
-    Collapse
-    <div
-      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded {collapseShow}"
-    >
-        <!-- Collapse header -->
-        <!-- <div
-        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
-      >
-        <div class="flex flex-wrap">
-          <div class="w-6/12">
-            <a
-              use:link
-              class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-              href="/"
-            >
-              Notus Svelte
-            </a>
-          </div>
-          <div class="w-6/12 flex justify-end">
-            <button
-              type="button"
-              class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-              on:click={() => toggleCollapseShow('hidden')}
-            >
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div> -->
-        <!-- </div> -->
-        <!-- Form -->
-        <!-- <form class="mt-6 mb-4 md:hidden">
-        <div class="mb-3 pt-0">
-          <input
-            type="text"
-            placeholder="Search"
-            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-          />
-        </div>
-        </form> -->
-
+        {:else}
+        <h3> <b>
+            {restaurantaname}
+        </b></h3>
+        {/if}
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />
         <!-- Heading -->
+        {#if role && role === "admin"}
         <h3
             class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
             >
             Super Admin
         </h3>
+        {:else}
+        <h3
+            class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+            >
+            Restaurant Admin
+        </h3>
+        {/if}
         <!-- Navigation -->
-
+    
+        {#if role && role === "admin"}
         <ul class="md:flex-col md:min-w-full flex flex-col list-none">
             <li class="items-center">
                 <a
@@ -121,37 +100,12 @@ export let location;
                     Settings
                 </a>
             </li>
-
-            <!--<li class="items-center">
-                <a
-                    use:link
-                    href="/admin/tables"
-                    class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/tables') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
-                    >
-                    <i
-                        class="fas fa-table mr-2 text-sm {location.href.indexOf('/admin/tables') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
-                        ></i>
-                    Tables
-                </a>
-            </li>
-
-            <li class="items-center">
-                <a
-                    use:link
-                    href="/admin/maps"
-                    class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/maps') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
-                    >
-                    <i
-                        class="fas fa-map-marked mr-2 text-sm {location.href.indexOf('/admin/maps') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
-                        ></i>
-                    Maps
-                </a>
-            </li> -->
         </ul>
 
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />
         <!-- Heading -->
+        
         <h6
             class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
             >
@@ -238,7 +192,9 @@ export let location;
                 </a>
             </li>
         </ul>
-
+        
+        {:else}
+        <!-- END --->
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />
 
@@ -306,8 +262,10 @@ export let location;
                 </a>
             </li>
         </ul>
-
-
+         <!-- Divider -->
+         <hr class="my-4 md:min-w-full" />
+         <!-- Heading -->
+          <OrderDropdown/>
         <!-- Divider -->
         <hr class="my-4 md:min-w-full" />
 
@@ -315,11 +273,48 @@ export let location;
         <h6
             class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
             >
-            Auth Layout Pages
+            BUSINESS SECTION
         </h6>
         <!-- Navigation -->
 
         <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/bussinesssection/offer"
+                    >
+                    <i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
+                    Offer
+                </a>
+            </li>
+
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/bussinesssection/reviews"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Product Reviews 
+                </a>
+            </li>
+        </ul>
+
+        {/if}
+
+        <!-- Divider -->
+        <hr class="my-4 md:min-w-full" />
+
+        <!-- Heading -->
+        <!-- <h6
+            class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+            >
+            Auth Layout Pages
+        </h6> -->
+        <!-- Navigation -->
+
+        <!-- <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
             <li class="items-center">
                 <a
                     use:link
@@ -341,6 +336,16 @@ export let location;
                     Register
                 </a>
             </li>
-        </ul>
+            <li class="items-center">
+                <a
+                    use:link
+                    class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                    href="/auth/login"
+                    >
+                    <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+                    Logout
+                </a>
+            </li>
+        </ul> -->
     </div>
 </nav>

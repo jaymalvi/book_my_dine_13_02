@@ -1,6 +1,7 @@
 <script>
   const baseUrl = "http://localhost:4000/login";
   import { link } from "svelte-routing";
+  import { navigate } from "svelte-routing";
 
   // core components
   const github = "../assets/img/github.svg";
@@ -65,6 +66,12 @@
 
       if (result && result.token) {
         // 
+        const data = await result;
+        console.log("here...........", data);
+        localStorage.setItem("loginData", JSON.stringify(data));
+        navigate("/admin/dashboard", { replace: true });
+        // setContext("loginData", data);
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>", getContext("loginData"));
       }
       // dispatch("postCreated", restaurant);
       return await result;

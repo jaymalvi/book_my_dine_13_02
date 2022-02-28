@@ -55,7 +55,7 @@
           <a 
           use:link
           href="/auth/register">
-            Registration
+            Registration1111111111111111
           </a>
           </button>
         </li>

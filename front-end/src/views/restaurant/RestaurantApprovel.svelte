@@ -3,6 +3,7 @@
 <script>
     // core components
     // import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
+    import { navigate } from "svelte-routing";
 
     // --------------------------------------------------------
     const baseUrl = "http://localhost:4000/restaurant";
@@ -45,6 +46,8 @@
         body: JSON.stringify(data)
       });
       const restaurant = res.json();
+      navigate("/restaurant/managerestaurant", { replace: true });
+      
       // dispatch("postCreated", restaurant);
       return await restaurant;
   }
